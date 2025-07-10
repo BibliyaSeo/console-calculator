@@ -45,11 +45,11 @@ public class Calculator {
 
     public void updateResultList(int index, int updateResult) {
         resultList.set(index, String.valueOf(updateResult));
-        System.out.println("값 수정이 완료되었습니다.\n새로운 값: " + resultList);
+        System.out.println("값이 수정되었습니다.\n새로운 값: " + resultList);
     }
 
     public void removeFirstResult() {
         resultList.remove(0);
-        System.out.println("첫 번째 값 삭제가 완료되었습니다.\n새로운 값: " + resultList);
+        System.out.println("첫 번째 값이 삭제되었습니다.\n새로운 값: " + resultList);
     }
 }
