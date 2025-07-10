@@ -11,6 +11,7 @@ public class Calculator {
         resultList = new ArrayList<>();
     }
 
+    // 계산 후 리스트에 추가
     public String calculate(int num1, int num2, char operator) {
         String result;
 
@@ -39,15 +40,18 @@ public class Calculator {
         return result;
     }
 
+    // 리스트 가져오기
     public List<String> getResultList() {
         return resultList;
     }
 
+    // 리스트 수정하기
     public void updateResultList(int index, int updateResult) {
         resultList.set(index, String.valueOf(updateResult));
         System.out.println("값이 수정되었습니다.\n새로운 값: " + resultList);
     }
 
+    // 리스트의 제일 먼저 들어온 값 삭제하기
     public void removeFirstResult() {
         resultList.remove(0);
         System.out.println("첫 번째 값이 삭제되었습니다.\n새로운 값: " + resultList);

@@ -30,7 +30,10 @@ public class Main {
                 System.out.println("잘못된 연산자입니다. 다시 입력하세요.");
             }
 
+            // 계산
             String result = calc.calculate(num1, num2, operator);
+
+            // 리스트 불러오기
             List<String> resultList = calc.getResultList();
 
             System.out.println("결과: " + result);
@@ -41,6 +44,7 @@ public class Main {
             System.out.print("결과를 수정하시고 싶으시면 update,\n가장 먼저 저장된 값을 삭제하고 싶다면 remove,\n계산기 프로그램을 종료하고 싶으시면 exit,\n계속 계산을 진행하시려면 아무 글자나 입력해 주세요: ");
             String answer = scanner.next();
 
+            // answer에 따른 분기 처리
             switch (answer) {
                 case "update":
                     while (true) {
