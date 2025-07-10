@@ -20,7 +20,6 @@ public class Main {
                 System.out.print("사칙연산 기호를 입력하세요(+,-,*,/): ");
                 String input = scanner.next();
 
-
                 if (input.length() == 1) {  // ++, -* 등 이상한 문자 입력 방지
                     operator = input.charAt(0);
                     if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
@@ -38,7 +37,8 @@ public class Main {
             System.out.println("지금까지의 결과들: " + calc.getResultList());
 
             System.out.println();
-            System.out.print("결과를 수정하시고 싶으시면 update,\n가장 먼저 저장된 값을 삭제하고 싶다면 remove,\n계산기 프로그램을 종료하고 싶으시면 exit,\n계속 계산을 진행하시려면 아무 글자나\n입력해 주세요: ");
+
+            System.out.print("결과를 수정하시고 싶으시면 update,\n가장 먼저 저장된 값을 삭제하고 싶다면 remove,\n계산기 프로그램을 종료하고 싶으시면 exit,\n계속 계산을 진행하시려면 아무 글자나 입력해 주세요: ");
             String answer = scanner.next();
 
             switch (answer) {
