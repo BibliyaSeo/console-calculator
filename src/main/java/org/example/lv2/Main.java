@@ -44,7 +44,7 @@ public class Main {
             switch (answer) {
                 case "update":
                     while (true) {
-                        System.out.print("수정할 값의 인덱스를 입력해 주세요: ");
+                        System.out.print("현재 입력할 수 있는 값은 0~" + (resultList.size() - 1) + "까의 정수입니다. 수정할 값의 인덱스를 입력해 주세요: ");
                         int index = 0;
                         if (scanner.hasNextInt()) {
                             index = scanner.nextInt();
@@ -57,8 +57,6 @@ public class Main {
                                 int updateResult = getPositiveInt(scanner, "변경을 원하시는");
                                 calc.updateResultList(index, updateResult);
                                 break;
-                            } else {
-                                System.out.print("현재 입력할 수 있는 값은 0~" + (resultList.size() - 1) + "까의 정수입니다. 다시 입력해 주세요: ");
                             }
                         } else {
                             System.out.print("정수를 입력해 주세요.");
@@ -69,7 +67,6 @@ public class Main {
 
                 case "remove":
                     calc.removeFirstResult();
-                    System.out.println("첫 번째 값이 삭제되었습니다.");
                     break;
 
                 case "exit":
