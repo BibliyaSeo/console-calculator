@@ -3,22 +3,21 @@ package org.example.lv3;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ArithmeticCalculator<T extends Number> {
     /* 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성 */
-    private List<String> resultList;
+    private final List<String> resultList;
 
     public ArithmeticCalculator() {
         resultList = new ArrayList<>();
     }
 
     // 계산 후 리스트에 추가
-    public String calculateAdd(T num1, T num2, char operator) {
+    public String calculateAdd(T num1, T num2, OperatorType operator) {
         String result;
 
         try {
-            OperatorType operatorChar = OperatorType.fromChar(operator);
-            result = String.valueOf(operatorChar.calculate(num1, num2));
+            double calcResult = CalculatorUtil.calculate(num1, num2, operator);
+            result = String.valueOf(calcResult);
         } catch (ArithmeticException e) {
             result = "undefined"; // 근데 여기가 Infinity로 채워짐
         } catch (IllegalArgumentException e) {

@@ -15,15 +15,18 @@ public class Main {
             Double num2 = getPositiveDouble(scanner, "두 번째");
 
             // 2) 사칙연산 기호(➕,➖,✖️,➗)를 입력받기
-            char operator;
+            OperatorType operator;
             while (true) {
                 System.out.print("사칙연산 기호를 입력하세요(+,-,*,/): ");
                 String input = scanner.next();
 
                 if (input.length() == 1) {  // ++, -* 등 이상한 문자 입력 방지
-                    operator = input.charAt(0);
-                    if (operator == '+' || operator == '-' || operator == '*' || operator == '/') {
+                    char op = input.charAt(0);
+                    try {
+                        operator = OperatorType.fromChar(op);  // enum 매핑 시도
                         break;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(e.getMessage());
                     }
                 }
 
@@ -37,7 +40,7 @@ public class Main {
             List<String> resultList = calc.getResultList();
 
             System.out.println("결과: " + result);
-            System.out.println("지금까지의 결과들: " + calc.getResultList());
+            System.out.println("지금까지의 결과들: " + resultList);
 
             System.out.println();
 
@@ -53,10 +56,7 @@ public class Main {
                         if (scanner.hasNextInt()) {
                             index = scanner.nextInt();
                             if (index >= 0 && index < resultList.size()) {
-                                // Todo: 인덱스값을 큰거를 입력하고 원하는 값을 입력하면 오류남
-                                // 처음 입력한index의 값이 변하지 않고 그대로 들어가는 게 아닌지 확인 필요!
-                                // 새로운 값을 적용하게 해야 함
-
+                                //  인덱스값을 큰거를 입력하고 원하는 값을 입력하면 오류남
                                 // 값 수정
                                 Double updateResult = getPositiveDouble(scanner, "변경을 원하시는");
                                 calc.updateResultList(index, updateResult);
