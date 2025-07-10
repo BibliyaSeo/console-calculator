@@ -3,26 +3,26 @@ package org.example.lv3;
 public enum OperatorType {
     ADD('+') {
         @Override
-        public int calculate(int a, int b) {
-            return a + b;
+        public double calculate(Number a, Number b) {
+            return a.doubleValue() + b.doubleValue();
         }
     },
     SUB('-') {
         @Override
-        public int calculate(int a, int b) {
-            return a - b;
+        public double calculate(Number a, Number b) {
+            return a.doubleValue() - b.doubleValue();
         }
     },
     MUL('*') {
         @Override
-        public int calculate(int a, int b) {
-            return a * b;
+        public double calculate(Number a, Number b) {
+            return a.doubleValue() * b.doubleValue();
         }
     },
     DIV('/') {
         @Override
-        public int calculate(int a, int b) {
-            return a / b;
+        public double calculate(Number a, Number b) {
+            return a.doubleValue() / b.doubleValue();
         }
     };
 
@@ -36,7 +36,7 @@ public enum OperatorType {
         return operator;
     }
 
-    public abstract int calculate(int a, int b);
+    public abstract double calculate(Number a, Number b);
 
     public static OperatorType fromChar(char input) {
         for (OperatorType op : values()) {

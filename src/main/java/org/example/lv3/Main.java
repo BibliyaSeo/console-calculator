@@ -6,13 +6,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         // Lv 2. 클래스를 적용해 기본적인 연산을 수행할 수 있는 계산기 만들기
-        ArithmeticCalculator calc = new ArithmeticCalculator();
+        ArithmeticCalculator<Double> calc = new ArithmeticCalculator<>();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
             // 1) 양의 정수(0 포함)를 2개 입력 받기
-            int num1 = getPositiveInt(scanner, "첫 번째");
-            int num2 = getPositiveInt(scanner, "두 번째");
+            Double num1 = getPositiveDouble(scanner, "첫 번째");
+            Double num2 = getPositiveDouble(scanner, "두 번째");
 
             // 2) 사칙연산 기호(➕,➖,✖️,➗)를 입력받기
             char operator;
@@ -31,7 +31,7 @@ public class Main {
             }
 
             // 계산
-            String result = calc.calculateAddList(num1, num2, operator);
+            String result = calc.calculateAdd(num1, num2, operator);
 
             // 리스트 불러오기
             List<String> resultList = calc.getResultList();
@@ -58,7 +58,7 @@ public class Main {
                                 // 새로운 값을 적용하게 해야 함
 
                                 // 값 수정
-                                int updateResult = getPositiveInt(scanner, "변경을 원하시는");
+                                Double updateResult = getPositiveDouble(scanner, "변경을 원하시는");
                                 calc.updateResultList(index, updateResult);
                                 break;
                             }
@@ -86,25 +86,18 @@ public class Main {
     }
 
     // 공통으로 사용하는 숫자 입력 부분 분리
-    public static int getPositiveInt(Scanner scanner, String label) {
-        int number;
-
+    public static Double getPositiveDouble(Scanner scanner, String label) {
         while (true) {
             System.out.print(label + " 숫자를 입력해 주세요: ");
-
-            if (scanner.hasNextInt()) {
-                number = scanner.nextInt();
-                if (label.equals("원하시는")) {
+            if (scanner.hasNextDouble()) {
+                double number = scanner.nextDouble();
+                if (label.equals("원하시는") || number >= 0) {
                     return number;
                 } else {
-                    if (number >= 0) {
-                        return number;
-                    } else {
-                        System.out.println("음수는 입력할 수 없습니다.");
-                    }
+                    System.out.println("음수는 입력할 수 없습니다.");
                 }
             } else {
-                System.out.println("정수를 입력해 주세요.");
+                System.out.println("실수나 정수를 입력해 주세요.");
                 scanner.next();
             }
         }

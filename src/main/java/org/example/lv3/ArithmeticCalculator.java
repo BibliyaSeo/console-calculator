@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ArithmeticCalculator {
+public class ArithmeticCalculator<T extends Number> {
     /* 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성 */
     private List<String> resultList;
 
@@ -13,14 +13,14 @@ public class ArithmeticCalculator {
     }
 
     // 계산 후 리스트에 추가
-    public String calculateAddList(int num1, int num2, char operator) {
+    public String calculateAdd(T num1, T num2, char operator) {
         String result;
 
         try {
             OperatorType operatorChar = OperatorType.fromChar(operator);
             result = String.valueOf(operatorChar.calculate(num1, num2));
         } catch (ArithmeticException e) {
-            result = "undefined";
+            result = "undefined"; // 근데 여기가 Infinity로 채워짐
         } catch (IllegalArgumentException e) {
             result = "잘못된 연산자입니다.";
         }
@@ -35,7 +35,7 @@ public class ArithmeticCalculator {
     }
 
     // 리스트 수정하기
-    public void updateResultList(int index, int updateResult) {
+    public void updateResultList(int index, T updateResult) {
         resultList.set(index, String.valueOf(updateResult));
         System.out.println("값이 수정되었습니다.\n새로운 값: " + resultList);
     }
