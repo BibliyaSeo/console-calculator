@@ -23,14 +23,13 @@ public class Main {
                 if (input.length() == 1) {  // ++, -* 등 이상한 문자 입력 방지
                     char op = input.charAt(0);
                     try {
-                        operator = OperatorType.fromChar(op);  // enum 매핑 시도
+                        operator = OperatorType.matchOperator(op);  // enum 매핑 시도
                         break;
                     } catch (IllegalArgumentException e) {
                         System.out.println(e.getMessage());
                     }
                 }
-
-                System.out.println("잘못된 연산자입니다. 다시 입력하세요.");
+                System.out.println("지원하지 않는 연산자입니다. 다시 입력하세요.");
             }
 
             // 계산
@@ -44,11 +43,13 @@ public class Main {
 
             System.out.println();
 
+            // 한번에 기능 처리...
             System.out.print("결과를 수정하시고 싶으시면 update,\n가장 먼저 저장된 값을 삭제하고 싶다면 remove,\n계산기 프로그램을 종료하고 싶으시면 exit,\n계속 계산을 진행하시려면 아무 글자나 입력해 주세요: ");
             String answer = scanner.next();
 
             // answer에 따른 분기 처리
             switch (answer) {
+                // 수정
                 case "update":
                     while (true) {
                         System.out.print("현재 입력할 수 있는 값은 0~" + (resultList.size() - 1) + "까의 정수입니다. 수정할 값의 인덱스를 입력해 주세요: ");
@@ -56,7 +57,7 @@ public class Main {
                         if (scanner.hasNextInt()) {
                             index = scanner.nextInt();
                             if (index >= 0 && index < resultList.size()) {
-                                //  인덱스값을 큰거를 입력하고 원하는 값을 입력하면 오류남
+                                // 인덱스값을 길이보다 큰거를 입력하면 오류 // JAVA는 -1로 마지막거 찾아주지 않아서 음수 제외
                                 // 값 수정
                                 Double updateResult = getPositiveDouble(scanner, "변경을 원하시는");
                                 calc.updateResultList(index, updateResult);
@@ -69,15 +70,18 @@ public class Main {
                     }
                     break;
 
+                // 삭제
                 case "remove":
                     calc.removeFirstResult();
                     break;
 
+                // 종료
                 case "exit":
                     System.out.println("계산기 프로그램을 종료합니다.");
                     scanner.close();
                     return;
 
+                // 아무거나 입력했을 때
                 default:
                     break;
             }
@@ -89,13 +93,8 @@ public class Main {
     public static Double getPositiveDouble(Scanner scanner, String label) {
         while (true) {
             System.out.print(label + " 숫자를 입력해 주세요: ");
-            if (scanner.hasNextDouble()) {
-                double number = scanner.nextDouble();
-                if (label.equals("원하시는") || number >= 0) {
-                    return number;
-                } else {
-                    System.out.println("음수는 입력할 수 없습니다.");
-                }
+            if (scanner.hasNextDouble()) { // 스트링으로 들어왔을 경우 체크
+                return scanner.nextDouble();
             } else {
                 System.out.println("실수나 정수를 입력해 주세요.");
                 scanner.next();

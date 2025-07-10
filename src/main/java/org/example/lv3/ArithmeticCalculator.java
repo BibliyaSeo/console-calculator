@@ -19,9 +19,11 @@ public class ArithmeticCalculator<T extends Number> {
             double calcResult = CalculatorUtil.calculate(num1, num2, operator);
             result = String.valueOf(calcResult);
         } catch (ArithmeticException e) {
-            result = "undefined"; // 근데 여기가 Infinity로 채워짐
+            // System.out.println(e.getMessage()); 0으로 나눌 수 없습니다.
+            // 에러 잡아서 undefined 처리
+            result = "undefined";
         } catch (IllegalArgumentException e) {
-            result = "잘못된 연산자입니다.";
+            result = "잘못된 연산입니다.";
         }
 
         resultList.add(result);
