@@ -48,34 +48,40 @@ public class Main {
                         int index = 0;
                         if (scanner.hasNextInt()) {
                             index = scanner.nextInt();
-                            if (index < 0 || index > resultList.size() - 1) {
-                                System.out.print("현재 입력할 수 있는 값은 0~" + (resultList.size() - 1) + "까의 정수입니다. 다시 입력해 주세요: ");
-                                scanner.next();
-
+                            if (index >= 0 && index < resultList.size()) {
                                 // Todo: 인덱스값을 큰거를 입력하고 원하는 값을 입력하면 오류남
-                                //  처음 입력한index의 값이 변하지 않고 그대로 들어가는 게 아닌지 확인 필요!
+                                // 처음 입력한index의 값이 변하지 않고 그대로 들어가는 게 아닌지 확인 필요!
+                                // 새로운 값을 적용하게 해야 함
+
+                                // 값 수정
+                                int updateResult = getPositiveInt(scanner, "변경을 원하시는");
+                                calc.updateResultList(index, updateResult);
+                                break;
+                            } else {
+                                System.out.print("현재 입력할 수 있는 값은 0~" + (resultList.size() - 1) + "까의 정수입니다. 다시 입력해 주세요: ");
                             }
                         } else {
                             System.out.print("정수를 입력해 주세요.");
                             scanner.next();
                         }
-
-                        // 값 수정
-                        int updateResult = getPositiveInt(scanner, "변경을 원하시는");
-                        System.out.println(index + " ====== " + updateResult);
-                        calc.updateResultList(index, updateResult);
-                        break;
                     }
-                default:
-            }
+                    break;
 
-            if (answer.equals("exit")) {
-                System.out.println("계산기 프로그램을 종료합니다.");
-                break;
+                case "remove":
+                    calc.removeFirstResult();
+                    System.out.println("첫 번째 값이 삭제되었습니다.");
+                    break;
+
+                case "exit":
+                    System.out.println("계산기 프로그램을 종료합니다.");
+                    scanner.close();
+                    return;
+
+                default:
+                    break;
             }
             System.out.println();
         }
-        scanner.close();
     }
 
     // 공통으로 사용하는 숫자 입력 부분 분리
