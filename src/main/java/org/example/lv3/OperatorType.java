@@ -1,30 +1,10 @@
 package org.example.lv3;
 
 public enum OperatorType {
-    ADD('+') {
-        @Override
-        public double calculate(Number a, Number b) {
-            return a.doubleValue() + b.doubleValue();
-        }
-    },
-    SUB('-') {
-        @Override
-        public double calculate(Number a, Number b) {
-            return a.doubleValue() - b.doubleValue();
-        }
-    },
-    MUL('*') {
-        @Override
-        public double calculate(Number a, Number b) {
-            return a.doubleValue() * b.doubleValue();
-        }
-    },
-    DIV('/') {
-        @Override
-        public double calculate(Number a, Number b) {
-            return a.doubleValue() / b.doubleValue();
-        }
-    };
+    ADD('+'),
+    SUB('-'),
+    MUL('*'),
+    DIV('/');
 
     private final char operator;
 
@@ -35,8 +15,6 @@ public enum OperatorType {
     public char getOperator() {
         return operator;
     }
-
-    public abstract double calculate(Number a, Number b);
 
     public static OperatorType fromChar(char input) {
         for (OperatorType op : values()) {
