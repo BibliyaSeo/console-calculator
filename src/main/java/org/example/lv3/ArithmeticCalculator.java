@@ -58,8 +58,11 @@ public class ArithmeticCalculator<T extends Number> {
             }
         }).toList();
 
-        if (!greaterList.isEmpty())
+        if (!greaterList.isEmpty()) {
             System.out.println("입력한 값보다 큰 결과값을 출력합니다: " + greaterList);
+        } else {
+            System.out.println("입력한 값보다 큰 결과값이 없습니다.");
+        }
     }
 }
 
