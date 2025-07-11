@@ -46,5 +46,20 @@ public class ArithmeticCalculator<T extends Number> {
         resultList.remove(0);
         System.out.println("첫 번째 값이 삭제되었습니다.\n새로운 값: " + resultList);
     }
+
+    // Scanner로 입력받은 값보다 큰 결과값 출력
+    public void printGreaterResult(double scannerValue) {
+        List<String> greaterList = resultList.stream().filter(str -> {
+            try {
+                double value = Double.parseDouble(str);
+                return value > scannerValue;
+            } catch (NumberFormatException e) { // 숫자 변환 안 되는 거 제외 (undefined)
+                return false;
+            }
+        }).toList();
+
+        if (!greaterList.isEmpty())
+            System.out.println("입력한 값보다 큰 결과값을 출력합니다: " + greaterList);
+    }
 }
 

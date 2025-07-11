@@ -12,7 +12,9 @@ public class Main {
         while (true) {
             // 1) 양의 정수(0 포함)를 2개 입력 받기
             Double num1 = getPositiveDouble(scanner, "첫 번째");
+            calc.printGreaterResult(num1);
             Double num2 = getPositiveDouble(scanner, "두 번째");
+            calc.printGreaterResult(num2);
 
             // 2) 사칙연산 기호(➕,➖,✖️,➗)를 입력받기
             OperatorType operator;
