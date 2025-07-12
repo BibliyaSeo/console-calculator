@@ -1,6 +1,7 @@
 package org.example.lv3;
 
 public enum OperatorType {
+    // 처음엔 여기서 계산했는데 CalculatorUtil로 따로 빼서 계산
     ADD('+'),
     SUB('-'),
     MUL('*'),
